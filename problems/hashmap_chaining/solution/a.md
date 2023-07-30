@@ -80,14 +80,18 @@ void insert_handler(unordered_map hashmap, int key_hv, struct Value *insert) {
   struct Value *curr = hashmap->buckets[key_hv];
 
   if (strcmp(curr->key, insert->key) == 0) {
+    free(curr->value);
     curr->value = insert->value;
+    free(insert->key);
     free(insert);
     return;
   }
 
   while (curr->next != NULL) {
     if (strcmp(curr->next->key, insert->key) == 0) {
+      free(curr->next->value);
       curr->next->value = insert->value;
+      free(insert->key);
       free(insert);
       return;
     }

@@ -1,6 +1,6 @@
 
-CC = gcc
-CFLAGS = -Wall -Werror -g
+CC = clang
+CFLAGS = -Wall -Werror -g -fsanitize=address,leak,undefined
 
 all: test_bstree_size
 

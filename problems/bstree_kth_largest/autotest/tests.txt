@@ -4,7 +4,7 @@ files=bstree_kth_largest.c
 
 compilers=[['clang']]
 
-compiler_args=-Wall -Werror -g -fsanitize=address,leak,undefined -o test_bstree_kth_largest.c bstree_kth_largest.c bstree.c -o test_bstree_kth_largest
+compiler_args=-Wall -Werror -g -fsanitize=address,leak,undefined test_bstree_kth_largest.c bstree_kth_largest.c bstree.c -o test_bstree_kth_largest
 
 command=./test_bstree_kth_largest
 

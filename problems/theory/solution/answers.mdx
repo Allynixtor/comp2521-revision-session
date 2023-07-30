@@ -1,0 +1,46 @@
+## Q1
+
+A and B are weighted, undirected graphs. B has the same edges as A, except the weights are increased by 3.
+
+a) Do the minimal spanning trees of A and B always contain the same edges? Justify your answer.
+
+Yes, since the cost of every spanning tree increases by (N-1)3. To explain this, a spanning tree in a graph of N vertices will have N - 1 edges, so increasing the weight of all edges by a constant number increases the weight of all spanning trees by a different constant number ((N-1)constant), hence the minimal spanning tree(s) will remain the same in terms of which edges are included.
+
+b) Consider the tree of single-source shortest paths from some vertex (e.g. as produced by Dijkstra's algorithm).
+Does this tree always contain the same edges in both graphs? Justify your answer.
+
+No, since paths with multiple edges will be disproportionately increased relative to the number of edges in the path. Consider a graph with three vertices A B C, with edge A-B = 4, edge B-C = 4, edge A-C = 9. In this case, the original shortest path from A to C will be A->B->C, but increasing all edges by 3 makes the shortest path instead A->C, as paths with more edges are disporportionately increased.
+
+## Q2
+
+A particular graph is stored as an array of edges, each represented as a pair of vertices.
+When a new edge is added, it is placed at the end of the array.
+For example: [{2, 3}, {1, 2}, {0, 2}, {0, 1}].
+
+a) What is the time complexity of breadth first search using this representation? Give your answer in terms
+of V and E.
+
+O(VE)
+
+b) How can this representation be adjusted to improve the complexity of BFS, while maintaining the same
+space complexity?
+
+Pop a vertex from the queue, then loop through the edges to enqueue any vertex adjacent to v. Each vertex gets popped once.
+
+## Q3
+
+Consider an arbitrary undirected connected graph G.
+A graph G\* is constructed by replacing every edge of G with 4 edges and two vertices like this:
+
+```
+       G                            G*
+                              ------ C ------
+                             /               \
+A ------------- B     =>    A                 B
+                             \               /
+                              ------ D ------
+```
+
+Is it true that G\* has an Euler cycle?
+
+Yes. By replacing every edge with 4 edges and 2 vertices, the newly created vertices have a degree of 2, and all other existing vertices have their degree multiplied by 2. Since every vertex has an even degree, then by Euler's theorem, there must be an euler cycle.

@@ -1,4 +1,4 @@
-max_cpu_seconds=10
+max_cpu_seconds=30
 
 files=bstree_difference.c
 

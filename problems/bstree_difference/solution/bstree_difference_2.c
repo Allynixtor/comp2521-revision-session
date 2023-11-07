@@ -32,5 +32,6 @@ int bstree_difference(bstree t) {
             ans = diff;
         }
     }
+    free(arr);
     return ans;
 }

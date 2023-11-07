@@ -35,14 +35,18 @@ int main()
     int* coins_array = malloc(n * sizeof(int));
 
     for (int i = 0; i < n; i++) {
-        int coins_array_item = parse_int(ltrim(rtrim(readline())));
 
+        char *data = readline();
+        int coins_array_item = parse_int(ltrim(rtrim(data)));
         *(coins_array + i) = coins_array_item;
+        free(data);
     }
 
     int result = sumCoins(p, n, coins_array);
 
     printf("%d\n", result);
+
+    free(coins_array);
 
     return 0;
 }
@@ -53,6 +57,10 @@ char* readline() {
 
     char* data = malloc(alloc_length);
 
+    if (data == NULL) {
+        return NULL; // Handle memory allocation failure
+    }
+
     while (true) {
         char* cursor = data + data_length;
         char* line = fgets(cursor, alloc_length - data_length, stdin);
@@ -61,7 +69,7 @@ char* readline() {
             break;
         }
 
-        data_length += strlen(cursor);
+        data_length += strlen(line);
 
         if (data_length < alloc_length - 1 || data[data_length - 1] == '\n') {
             break;
@@ -69,31 +77,37 @@ char* readline() {
 
         alloc_length <<= 1;
 
-        data = realloc(data, alloc_length);
+        char* new_data = realloc(data, alloc_length);
 
-        if (!data) {
-            data = "\0";
-
-            break;
+        if (!new_data) {
+            free(data);
+            return NULL; // Handle memory allocation failure
         }
+
+        data = new_data;
     }
 
     if (data[data_length - 1] == '\n') {
         data[data_length - 1] = '\0';
 
-        data = realloc(data, data_length);
+        char* new_data = realloc(data, data_length);
 
-        if (!data) {
-            data = "\0";
+        if (!new_data) {
+            free(data);
+            return NULL; // Handle memory allocation failure
         }
+
+        data = new_data;
     } else {
-        data = realloc(data, data_length + 1);
+        char* new_data = realloc(data, data_length + 1);
 
-        if (!data) {
-            data = "\0";
-        } else {
-            data[data_length] = '\0';
+        if (!new_data) {
+            free(data);
+            return NULL; // Handle memory allocation failure
         }
+
+        data = new_data;
+        data[data_length] = '\0';
     }
 
     return data;

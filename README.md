@@ -1,6 +1,6 @@
 # comp2521-revision-session-questions
 
-Practice problems for the 23T2 CSESoc COMP2521 revision session. Includes a mix of theory-based multiple choice questions and practical programming problems.
+Practice problems for the 23T3 CSESoc COMP2521 revision session. Includes a mix of theory-based multiple choice questions and practical programming problems.
 
 ## Setup
 
@@ -68,16 +68,16 @@ The `main.md` file explains your problem to students attempting to solve it, inp
 
 ## Writing Test Cases
 
-Once you have coded up your solution in `solution/problem_template.c`, write up test cases in `autotest/tests.txt`.
+Once you have coded up your solution in `solution/problem_template.c`, write up test cases in `autotest/tests.txt`. Have a look at the test cases from the other problems or CSE's Autotest System repo for a guide.
 
 Then, generate expected outputs for your test cases:
 
 ```bash
-$ cd solution
-$ autotest.sh <problem_template> --generate_expected_output
+$ cd <problem_template>
+$ ../../autotest.sh <problem_template> --generate_expected_output=update --directory solution --autotest_directory autotest 
 ```
 
-where `<problem_template>` is the name of the directory containing your problem. If you are happy with the generated expected outputs, copy-paste the output into your `autotest/tests.txt` file.
+where `<problem_template>` is the name of the directory containing your problem. This will generate expected outputs and append them to the `autotest/tests.txt` file.
 
 Then try running autotest on your solution:
 
